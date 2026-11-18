@@ -916,10 +916,13 @@
           particlePulse = 1;
         }
 
+        let lastPressAt = 0;
+
         function handlePressStart(e) {
           if (e && e.button !== undefined && e.button !== 0) return;
           if (isPointerDown) return;
           isPointerDown = true;
+          lastPressAt = Date.now();
           redButton.classList.add("is-pressed");
           triggerChaosEffects();
         }
@@ -940,7 +943,16 @@
           handlePressStart(e);
         });
         redButton.addEventListener("click", function () {
-          triggerHapticVibration();
+          if (Date.now() - lastPressAt > 400) {
+            lastPressAt = Date.now();
+            redButton.classList.add("is-pressed");
+            triggerChaosEffects();
+            setTimeout(function () {
+              redButton.classList.remove("is-pressed");
+            }, 130);
+          } else {
+            triggerHapticVibration();
+          }
         });
         redButton.addEventListener("pointerup", handlePressEnd);
         redButton.addEventListener("pointercancel", handlePressEnd);
