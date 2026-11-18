@@ -1,0 +1,6 @@
+{
+  "name": "Don't Touch",
+  "description": "An ultra-minimalist dark-mode 3D glossy red push button with custom audio prank trigger.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
